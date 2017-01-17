@@ -200,10 +200,14 @@ struct cs_dbs_tuners {
 	unsigned int sampling_down_factor;
 	unsigned int up_threshold;
 	unsigned int down_threshold;
+	unsigned int down_threshold_suspended;
 	unsigned int freq_step;
 	unsigned int twostep_threshold;
 	unsigned int twostep_counter;
 	u64 twostep_time;
+	unsigned int boost_enabled;
+	unsigned int boost_count;
+	unsigned int boost_ceiling;
 };
 
 struct ex_dbs_tuners {
@@ -230,6 +234,7 @@ struct zz_dbs_tuners {
 	unsigned int afs_threshold2;
 	unsigned int afs_threshold3;
 	unsigned int afs_threshold4;
+
 };
 
 /* Common Governor data across policies */
