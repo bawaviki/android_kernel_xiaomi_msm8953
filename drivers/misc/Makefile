@@ -76,3 +76,7 @@ obj-$(CONFIG_MEMORY_STATE_TIME) += memory_state_time.o
 obj-$(CONFIG_HQ_SYSFS_SUPPORT) 	+= hqsysfs/
 obj-$(CONFIG_MI_FS)             +=xiaomi_fs/
 obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o
+
+# TODO: remove me b/62057517
+subdir-ccflags-y += \
+	-Wno-ignored-attributes
