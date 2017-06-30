@@ -524,7 +524,7 @@ static struct common_dbs_data cs_dbs_cdata = {
 	.gov_dbs_timer = cs_dbs_timer,
 	.gov_check_cpu = cs_check_cpu,
 	.gov_ops = &cs_ops,
-	.init = cs_init,
+	.init = (void *) cs_init,
 	.exit = cs_exit,
 };
 
