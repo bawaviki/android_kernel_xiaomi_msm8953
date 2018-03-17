@@ -18,3 +18,10 @@ config MACH_XIAOMI_TISSOT
 	select MACH_XIAOMI_MSM8953
 	help
 	  Support for Xiaomi Mi A1 (Tissot)
+
+config MACH_XIAOMI_TIFFANY
+	bool "Tiffany board"
+	select MACH_XIAOMI_MSM8953
+	help
+	  Support for Xiaomi MI 5X
+
