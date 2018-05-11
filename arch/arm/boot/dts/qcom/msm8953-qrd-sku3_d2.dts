@@ -6130,8 +6130,6 @@
 			qcom,bcl-enable;
 			qcom,bcl-framework-interface;
 			qcom,bcl-freq-control-list = <0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9>;
-			qcom,bcl-hotplug-list = <0x8 0x9>;
-			qcom,bcl-soc-hotplug-list = <0x6 0x7 0x8 0x9>;
 
 			qcom,ibat-monitor {
 				qcom,low-threshold-uamp = <0x33e140>;
@@ -6139,7 +6137,7 @@
 				qcom,mitigation-freq-khz = <0x19c800>;
 				qcom,vph-high-threshold-uv = <0x3567e0>;
 				qcom,vph-low-threshold-uv = <0x30d400>;
-				qcom,soc-low-threshold = <0xa>;
+				qcom,soc-low-threshold = <0x5>;
 				qcom,thermal-handle = <0xc9>;
 			};
 		};
