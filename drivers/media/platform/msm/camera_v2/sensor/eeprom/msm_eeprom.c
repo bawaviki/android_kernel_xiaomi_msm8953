@@ -163,7 +163,7 @@ static int read_eeprom_memory(struct msm_eeprom_ctrl_t *e_ctrl,
 	struct msm_eeprom_memory_map_t *emap = block->map;
 	struct msm_eeprom_board_info *eb_info;
 	uint8_t *memptr = block->mapdata;
-#if (defined CONFIG_MACH_XIAOMI_MIDO) || (defined CONFIG_MACH_XIAOMI_TISSOT)
+#if (defined CONFIG_MACH_XIAOMI_MIDO) || (defined CONFIG_MACH_XIAOMI_TIFFANY) || (defined CONFIG_MACH_XIAOMI_TISSOT)
 	uint8_t sensor_id[2] = {0};
 #endif
 
@@ -174,7 +174,7 @@ static int read_eeprom_memory(struct msm_eeprom_ctrl_t *e_ctrl,
 
 	eb_info = e_ctrl->eboard_info;
 
-#if (defined CONFIG_MACH_XIAOMI_MIDO) || (defined CONFIG_MACH_XIAOMI_TISSOT)
+#if (defined CONFIG_MACH_XIAOMI_MIDO) || (defined CONFIG_MACH_XIAOMI_TIFFANY) || (defined CONFIG_MACH_XIAOMI_TISSOT)
 	e_ctrl->i2c_client.addr_type = 2;
 	rc = e_ctrl->i2c_client.i2c_func_tbl->i2c_read_seq(
 			&(e_ctrl->i2c_client), 0x0000,
@@ -200,6 +200,15 @@ static int read_eeprom_memory(struct msm_eeprom_ctrl_t *e_ctrl,
 				&(e_ctrl->i2c_client), emap[j].page.addr,
 				emap[j].page.data, emap[j].page.data_t);
 
+#ifdef CONFIG_MACH_XIAOMI_TIFFANY
+			if (emap[j].page.delay > 20)
+			    msleep(emap[j].page.delay);
+			else if (emap[j].page.delay)
+			    usleep_range(emap[j].page.delay * 1000,
+				(emap[j].page.delay * 1000) + 1000);
+#else
+				msleep(emap[j].page.delay);
+#endif
 #ifdef CONFIG_MACH_XIAOMI_TISSOT
 			if (emap[j].page.delay > 20)
 			    msleep(emap[j].page.delay);
@@ -221,6 +230,15 @@ static int read_eeprom_memory(struct msm_eeprom_ctrl_t *e_ctrl,
 				&(e_ctrl->i2c_client), emap[j].pageen.addr,
 				emap[j].pageen.data, emap[j].pageen.data_t);
 
+#ifdef CONFIG_MACH_XIAOMI_TIFFANY
+			if (emap[j].pageen.delay > 20)
+				msleep(emap[j].pageen.delay);
+			else if (emap[j].pageen.delay)
+				usleep_range(emap[j].pageen.delay * 1000,
+						(emap[j].pageen.delay * 1000) + 1000);
+#else
+                                msleep(emap[j].pageen.delay);
+#endif
 #ifdef CONFIG_MACH_XIAOMI_TISSOT
 			if (emap[j].pageen.delay > 20)
 				msleep(emap[j].pageen.delay);
@@ -412,6 +430,15 @@ static int eeprom_parse_memory_map(struct msm_eeprom_ctrl_t *e_ctrl,
 					eeprom_map->mem_settings[i].reg_data,
 					eeprom_map->mem_settings[i].data_type);
 
+#ifdef CONFIG_MACH_XIAOMI_TIFFANY
+				if (eeprom_map->mem_settings[i].delay > 20)
+					msleep(eeprom_map->mem_settings[i].delay);
+				else if (eeprom_map->mem_settings[i].delay)
+					usleep_range(eeprom_map->mem_settings[i].delay * 1000,
+							(eeprom_map->mem_settings[i].delay * 1000) + 1000);
+#else
+				msleep(eeprom_map->mem_settings[i].delay);
+#endif
 #ifdef CONFIG_MACH_XIAOMI_TISSOT
 				if (eeprom_map->mem_settings[i].delay > 20)
 					msleep(eeprom_map->mem_settings[i].delay);
@@ -454,6 +481,15 @@ static int eeprom_parse_memory_map(struct msm_eeprom_ctrl_t *e_ctrl,
 					memptr,
 					eeprom_map->mem_settings[i].reg_data);
 
+#ifdef CONFIG_MACH_XIAOMI_TIFFANY
+				if (eeprom_map->mem_settings[i].delay > 20)
+					msleep(eeprom_map->mem_settings[i].delay);
+				else if (eeprom_map->mem_settings[i].delay)
+					usleep_range(eeprom_map->mem_settings[i].delay * 1000,
+							(eeprom_map->mem_settings[i].delay * 1000) + 1000);
+#else
+				msleep(eeprom_map->mem_settings[i].delay);
+#endif
 #ifdef CONFIG_MACH_XIAOMI_TISSOT
 				if (eeprom_map->mem_settings[i].delay > 20)
 					msleep(eeprom_map->mem_settings[i].delay);
