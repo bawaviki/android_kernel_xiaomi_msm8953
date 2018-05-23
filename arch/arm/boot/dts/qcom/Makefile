@@ -251,6 +251,7 @@ ifneq ($(CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE),y)
 dtb-$(CONFIG_MACH_XIAOMI_MIDO) += msm8953-qrd-sku3-mido-nontreble.dtb
 endif
 dtb-$(CONFIG_MACH_XIAOMI_MIDO) += msm8953-qrd-sku3-mido-treble.dtb
+dtb-$(CONFIG_MACH_XIAOMI_TIFFANY) += msm8953-qrd-sku3-tiffany.dtb
 dtb-$(CONFIG_MACH_XIAOMI_TISSOT) += msm8953-qrd-sku3-tissot.dtb
 else
 dtb-$(CONFIG_ARCH_MSM8953) += msm8953-sim.dtb \
