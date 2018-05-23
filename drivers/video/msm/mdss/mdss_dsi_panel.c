@@ -349,6 +349,10 @@ disp_en_gpio_err:
 	return rc;
 }
 
+#ifdef CONFIG_MACH_XIAOMI_TIFFANY
+extern int ft8716_suspend;
+extern int panel_suspend_reset_flag;
+#endif
 #ifdef CONFIG_MACH_XIAOMI_TISSOT
 extern int ft8716_suspend;
 extern int panel_suspend_reset_flag;
@@ -496,6 +500,19 @@ int mdss_dsi_panel_reset(struct mdss_panel_data *pdata, int enable)
 			gpio_free(ctrl_pdata->disp_en_gpio);
 		}
 
+#ifdef CONFIG_MACH_XIAOMI_TIFFANY
+		if (panel_suspend_reset_flag == 2 || (panel_suspend_reset_flag == 3 && ft8716_gesture_func_on == 0)
+			|| ft8716_suspend) {
+				gpio_set_value((ctrl_pdata->rst_gpio), 1);
+				mdelay(10);
+				gpio_set_value((ctrl_pdata->rst_gpio), 0);
+				mdelay(10);
+				gpio_set_value((ctrl_pdata->rst_gpio), 1);
+				mdelay(10);
+				gpio_set_value((ctrl_pdata->rst_gpio), 0);
+				mdelay(10);
+		} else
+#endif
 #ifdef CONFIG_MACH_XIAOMI_TISSOT
 		if (panel_suspend_reset_flag == 2 || (panel_suspend_reset_flag == 3 && ft8716_gesture_func_on == 0)
 			|| ft8716_suspend) {
