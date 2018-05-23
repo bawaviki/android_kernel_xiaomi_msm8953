@@ -27,6 +27,11 @@
 /* [PLATFORM]-Mod-BEGIN by TCTNB.YQJ, FR797197, 2014/11/28 add for tp gesture  */
 
 #define SET_COVER_MODE
+#ifdef CONFIG_MACH_XIAOMI_TIFFANY
+#define FOCALTECH_AUTO_UPGRADE          0
+#else
+#define FOCALTECH_AUTO_UPGRADE		1
+#endif
 #ifdef CONFIG_MACH_XIAOMI_TISSOT
 #define FOCALTECH_AUTO_UPGRADE          0
 #else
