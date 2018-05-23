@@ -19,6 +19,7 @@
 	firmware: firmware {
 		android {
 			fstab {
+			        /delete-node/ vendor;
 				system {
 					fsmgr_flags = "wait";
 					status = "ok";
